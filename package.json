@@ -17,6 +17,9 @@
   "files": [
     "lib"
   ],
+  "scripts": {
+    "build": "babel src --out-dir lib --source-maps-inline"
+  },
   "devDependencies": {
     "babel": "^5.1.10",
     "mocha": "^2.2.4",
