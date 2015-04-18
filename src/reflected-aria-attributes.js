@@ -11,13 +11,25 @@ export default class ReflectedARIAAttributes {
                 get: desc.getter,
                 set: desc.setter
             });
-            element.setAttribute(attrName, desc.default);
+            var isPrototype;
+            try {
+                isPrototype = !element.attributes;
+            } catch(error) {
+                isPrototype = true;
+            }
+            if (! isPrototype) {
+                element.setAttribute(attrName, desc.default);
+            }
         }
     }
 
     static defineAll(element) {
         var attrs = Object.keys(ReflectedARIAAttributes.attributes);
         ReflectedARIAAttributes.define(element, attrs);
+    }
+
+    static init() {
+        ReflectedARIAAttributes.defineAll(HTMLElement.prototype);
     }
 }
 ReflectedARIAAttributes.attributes = {
