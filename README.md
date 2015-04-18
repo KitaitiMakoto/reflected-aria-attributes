@@ -11,4 +11,4 @@ See also
 License
 -------
 
-GPLv3 or later. See COPYING.txt file for details.
+GPLv3 or later. See LICENSE file for details.
