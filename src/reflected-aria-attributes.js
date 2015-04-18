@@ -1,9 +1,9 @@
 "use strict";
 
 export default class ReflectedARIAAttributes {
-	static define(element, attributes) {
-		for (let attrName of attributes) {
-            var desc = this.attributes[attrName];
+    static define(element, attributes) {
+        for (let attrName of attributes) {
+            var desc = ReflectedARIAAttributes.attributes[attrName];
             if (! desc) {
                 throw new Error(`Unknown attribute: {$attrName}`);
             }
@@ -12,8 +12,8 @@ export default class ReflectedARIAAttributes {
                 set: desc.setter
             });
             element.setAttribute(attrName, desc.default);
-		}
-	}
+        }
+    }
 }
 ReflectedARIAAttributes.attributes = {
     "aria-pressed": {
