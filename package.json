@@ -18,7 +18,8 @@
     "lib"
   ],
   "scripts": {
-    "build": "babel src --out-dir lib --source-maps-inline"
+    "build": "babel src --out-dir lib --source-maps-inline",
+    "test": "npm run build && mocha test/*.js"
   },
   "devDependencies": {
     "babel": "^5.1.10",
