@@ -47,4 +47,12 @@ describe("ReflectedARIAAttributes.define()", function() {
     for (let attr in ReflectedARIAAttributes.attributes) {
         shared.shouldBehaveLikeReflectedAttribute(attr);
     }
+
+    it("should define multiple attributes at once", function() {
+        var attrs = Object.keys(ReflectedARIAAttributes.attributes);
+        ReflectedARIAAttributes.define(this.element, attrs);
+
+        assert(this.element.hasAttribute("aria-pressed"));
+        assert(this.element.hasAttribute("aria-disabled"));
+    });
 });
