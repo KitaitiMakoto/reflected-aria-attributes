@@ -7,34 +7,44 @@ import ReflectedARIAAttributes from "../lib/reflected-aria-attributes"
 var window = jsdom.jsdom().defaultView;
 var document = window.document;
 
-describe("ReflectedARIAAttributes.define()", () => {
-    var button;
+var shared = {
+    shouldBehaveLikeReflectedAttribute: function(attr) {
+        beforeEach(function(done) {
+            ReflectedARIAAttributes.define(this.element, [attr]);
+            done();
+        });
 
-    beforeEach(done => {
-        button = document.createElement("span");
-        ReflectedARIAAttributes.define(button, ["aria-pressed"]);
+        it("should define reflected WAI-ARIA attributes to an element", function() {
+            assert(this.element.ariaPressed !== undefined);
+            assert(this.element.hasAttribute("aria-pressed"));
+        });
+
+        it("should define default value", function() {
+            assert(this.element.ariaPressed === false);
+            assert(this.element.getAttribute("aria-pressed") === "false");
+        });
+
+        it("property change should be reflected to attribute", function() {
+            this.element.ariaPressed = true;
+
+            assert(this.element.getAttribute("aria-pressed") === "true");
+        });
+
+        it("attribute change should be reflected to property", function() {
+            this.element.setAttribute("aria-pressed", "true");
+            assert(this.element.ariaPressed, true);
+        });
+    }
+};
+
+describe("ReflectedARIAAttributes.define()", function() {
+    beforeEach(function(done) {
+        this.element = document.createElement("span");
 
         done();
     });
 
-    it("should define reflected WAI-ARIA attributes to an element", () => {
-        assert(button.ariaPressed !== undefined);
-        assert(button.hasAttribute("aria-pressed"));
-    });
-
-    it("should define default value", () => {
-        assert(button.ariaPressed === false);
-        assert(button.getAttribute("aria-pressed") === "false");
-    });
-
-    it("property change should be reflected to attribute", () => {
-        button.ariaPressed = true;
-
-        assert(button.getAttribute("aria-pressed") === "true");
-    });
-
-    it("attribute change should be reflected to property", () => {
-        button.setAttribute("aria-pressed", "true");
-        assert(button.ariaPressed, true);
-    });
+    for (let attr in ReflectedARIAAttributes.attributes) {
+        shared.shouldBehaveLikeReflectedAttribute(attr);
+    }
 });
