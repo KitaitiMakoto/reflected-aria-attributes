@@ -6,6 +6,7 @@ import ReflectedARIAAttributes from "../lib/reflected-aria-attributes"
 
 var window = jsdom.jsdom().defaultView;
 var document = window.document;
+global.HTMLElement = window.HTMLElement
 
 var shared = {
     shouldBehaveLikeReflectedAttribute: function(attr) {
@@ -71,5 +72,16 @@ describe("ReflectedARIAAttributes.defineAll()", function() {
         attrs.forEach((attr) => {
             assert(this.element.hasAttribute(attr));
         });
+    });
+});
+
+describe("ReflectedARIAAttributes.init()", function() {
+    it("should be define all available properties to all elements", function() {
+        ReflectedARIAAttributes.init();
+
+        var a = document.createElement("a");
+        a.ariaPressed = true;
+        assert(a.hasAttribute("aria-pressed"));
+        assert(a.ariaDisabled === false);
     });
 });
