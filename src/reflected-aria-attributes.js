@@ -25,5 +25,15 @@ ReflectedARIAAttributes.attributes = {
         setter: function(value) {
             this.setAttribute("aria-pressed", !!value);
         }
+    },
+    "aria-disabled": {
+        propName: "ariaDisabled",
+        default: "false",
+        getter: function() {
+            return this.getAttribute("aria-disabled") === "true";
+        },
+        setter: function(value) {
+            this.setAttribute("aria-disabled", !!value);
+        }
     }
 };
