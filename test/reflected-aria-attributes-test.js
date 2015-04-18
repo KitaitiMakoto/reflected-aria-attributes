@@ -56,3 +56,20 @@ describe("ReflectedARIAAttributes.define()", function() {
         assert(this.element.hasAttribute("aria-disabled"));
     });
 });
+
+describe("ReflectedARIAAttributes.defineAll()", function() {
+    beforeEach(function(done) {
+        this.element = document.createElement("span");
+
+        done();
+    });
+
+    it("should define all available properties", function() {
+        ReflectedARIAAttributes.defineAll(this.element);
+
+        var attrs = Object.keys(ReflectedARIAAttributes.attributes);
+        attrs.forEach((attr) => {
+            assert(this.element.hasAttribute(attr));
+        });
+    });
+});
