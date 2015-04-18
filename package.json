@@ -16,5 +16,8 @@
   "license": "GPLv3",
   "files": [
     "lib"
-  ]
+  ],
+  "devDependencies": {
+    "babel": "^5.1.10"
+  }
 }
