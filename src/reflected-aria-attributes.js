@@ -14,6 +14,11 @@ export default class ReflectedARIAAttributes {
             element.setAttribute(attrName, desc.default);
         }
     }
+
+    static defineAll(element) {
+        var attrs = Object.keys(ReflectedARIAAttributes.attributes);
+        ReflectedARIAAttributes.define(element, attrs);
+    }
 }
 ReflectedARIAAttributes.attributes = {
     "aria-pressed": {
