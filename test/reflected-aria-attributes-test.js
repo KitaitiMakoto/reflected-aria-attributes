@@ -33,7 +33,7 @@ var shared = {
 
         it("attribute change should be reflected to property", function() {
             this.element.setAttribute(attr, "true");
-            assert(this.element.ariaPressed, true);
+            assert(this.element.ariaPressed === true);
         });
     }
 };
