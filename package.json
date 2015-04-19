@@ -17,6 +17,7 @@
   "files": [
     "lib"
   ],
+  "main": "lib/reflected-aria-attributes.js",
   "scripts": {
     "build": "babel src --out-dir lib --source-maps-inline",
     "test": "npm run build && mocha test/*.js"
