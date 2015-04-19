@@ -11,48 +11,48 @@ Usage
 
 Defining reflected ARIA attributes to all elements(by defining to `HTMLElement`):
 
-    ```javascript
-    import aria from "reflected-aria-attributes";
-    aria.init();
-    
-    var a = document.createElement("a");
-    a.ariaPressed; // => false
-    a.ariaPressed = true;
-    a.getAttribute("aria-pressed"); // => "true"
-    ```
+```javascript
+import aria from "reflected-aria-attributes";
+aria.init();
+
+var a = document.createElement("a");
+a.ariaPressed; // => false
+a.ariaPressed = true;
+a.getAttribute("aria-pressed"); // => "true"
+```
 
 Defining reflected ARIA attributes to an element:
 
-    ```javascript
-    import aria from "reflected-aria-attributes";
-    
-    var a = document.createElement("a");
-    aria.defineAll(a);
-    a.ariaPressed; // => false
-    a.ariaPressed = true;
-    a.getAttribute("aria-pressed"); // => "true"
-    
-    var another = document.createElement("a");
-    a.ariaPressed; // => undefined
-    a.ariaPressed = true;
-    a.hasAttribute("aria-pressed"); // => false
-    ```
+```javascript
+import aria from "reflected-aria-attributes";
+
+var a = document.createElement("a");
+aria.defineAll(a);
+a.ariaPressed; // => false
+a.ariaPressed = true;
+a.getAttribute("aria-pressed"); // => "true"
+
+var another = document.createElement("a");
+a.ariaPressed; // => undefined
+a.ariaPressed = true;
+a.hasAttribute("aria-pressed"); // => false
+```
 
 Defining specified ARIA attribute:
 
-    ```javascript
-    import aria from "reflected-aria-attributes";
-    
-    var a = document.createElement("a");
-    aria.define(a, "aria-pressed");
-    a.ariaPressed; // => false
-    a.ariaPressed = true;
-    a.getAttribute("aria-pressed"); // => "true"
-    
-    a.ariaDisabled; // => undefined
-    a.ariaDisabled = true;
-    a.hasAttribute("aria-disabled"); // => false
-    ```
+```javascript
+import aria from "reflected-aria-attributes";
+
+var a = document.createElement("a");
+aria.define(a, "aria-pressed");
+a.ariaPressed; // => false
+a.ariaPressed = true;
+a.getAttribute("aria-pressed"); // => "true"
+
+a.ariaDisabled; // => undefined
+a.ariaDisabled = true;
+a.hasAttribute("aria-disabled"); // => false
+```
 
 State
 -----
