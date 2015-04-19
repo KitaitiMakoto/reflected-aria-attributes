@@ -17,22 +17,22 @@ var shared = {
 
         it("should define reflected WAI-ARIA attributes to an element", function() {
             assert(this.element.ariaPressed !== undefined);
-            assert(this.element.hasAttribute("aria-pressed"));
+            assert(this.element.hasAttribute(attr));
         });
 
         it("should define default value", function() {
             assert(this.element.ariaPressed === false);
-            assert(this.element.getAttribute("aria-pressed") === "false");
+            assert(this.element.getAttribute(attr) === "false");
         });
 
         it("property change should be reflected to attribute", function() {
             this.element.ariaPressed = true;
 
-            assert(this.element.getAttribute("aria-pressed") === "true");
+            assert(this.element.getAttribute(attr) === "true");
         });
 
         it("attribute change should be reflected to property", function() {
-            this.element.setAttribute("aria-pressed", "true");
+            this.element.setAttribute(attr, "true");
             assert(this.element.ariaPressed, true);
         });
     }
