@@ -9,9 +9,10 @@ var document = window.document;
 global.HTMLElement = window.HTMLElement
 
 var shared = {
-    shouldBehaveLikeReflectedAttribute: function(attr) {
+    shouldBehaveLikeReflectedAttribute: function(attr, prop) {
         beforeEach(function(done) {
             ReflectedARIAAttributes.define(this.element, [attr]);
+
             done();
         });
 
@@ -26,14 +27,14 @@ var shared = {
         });
 
         it("property change should be reflected to attribute", function() {
-            this.element.ariaPressed = true;
+            this.element[prop] = true;
 
             assert(this.element.getAttribute(attr) === "true");
         });
 
         it("attribute change should be reflected to property", function() {
             this.element.setAttribute(attr, "true");
-            assert(this.element.ariaPressed === true);
+            assert(this.element[prop] === true);
         });
     }
 };
@@ -46,7 +47,8 @@ describe("ReflectedARIAAttributes.define()", function() {
     });
 
     for (let attr in ReflectedARIAAttributes.attributes) {
-        shared.shouldBehaveLikeReflectedAttribute(attr);
+        var prop = ReflectedARIAAttributes.attributes[attr].propName;
+        shared.shouldBehaveLikeReflectedAttribute(attr, prop);
     }
 
     it("should define multiple attributes at once", function() {
