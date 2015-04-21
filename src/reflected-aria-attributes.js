@@ -1,7 +1,7 @@
 "use strict";
 
 export default {
-    define(element, attributes) {
+    attachAttributes(element, attributes) {
         for (let attrName of attributes) {
             var desc = this.attributes[attrName];
             if (! desc) {
@@ -25,7 +25,7 @@ export default {
 
     defineAll(element) {
         var attrs = Object.keys(this.attributes);
-        this.define(element, attrs);
+        this.attachAttributes(element, attrs);
     },
 
     init() {

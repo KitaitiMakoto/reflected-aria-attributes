@@ -11,17 +11,17 @@ global.HTMLElement = window.HTMLElement
 var shared = {
     shouldBehaveLikeReflectedAttribute: function(attr, prop) {
         beforeEach(function(done) {
-            ReflectedARIAAttributes.define(this.element, [attr]);
+            ReflectedARIAAttributes.attachAttributes(this.element, [attr]);
 
             done();
         });
 
-        it("should define reflected WAI-ARIA attributes to an element", function() {
+        it("should attach reflected WAI-ARIA attributes to an element", function() {
             assert(this.element.ariaPressed !== undefined);
             assert(this.element.hasAttribute(attr));
         });
 
-        it("should define default value", function() {
+        it("should set default value", function() {
             assert(this.element.ariaPressed === false);
             assert(this.element.getAttribute(attr) === "false");
         });
@@ -39,7 +39,7 @@ var shared = {
     }
 };
 
-describe("ReflectedARIAAttributes.define()", function() {
+describe("ReflectedARIAAttributes.attachAttributes()", function() {
     beforeEach(function(done) {
         this.element = document.createElement("span");
 
@@ -51,9 +51,9 @@ describe("ReflectedARIAAttributes.define()", function() {
         shared.shouldBehaveLikeReflectedAttribute(attr, prop);
     }
 
-    it("should define multiple attributes at once", function() {
+    it("should attach multiple attributes at once", function() {
         var attrs = Object.keys(ReflectedARIAAttributes.attributes);
-        ReflectedARIAAttributes.define(this.element, attrs);
+        ReflectedARIAAttributes.attachAttributes(this.element, attrs);
 
         assert(this.element.hasAttribute("aria-pressed"));
         assert(this.element.hasAttribute("aria-disabled"));
