@@ -87,3 +87,29 @@ describe("ReflectedARIAAttributes.init()", function() {
         assert(a.ariaDisabled === false);
     });
 });
+
+describe("ReflectedARIAAttributes.attachRole()", function() {
+    beforeEach(function() {
+        this.element = document.createElement("div");
+        ReflectedARIAAttributes.attachRole(this.element, "button");
+    });
+
+    it("should set role attribute", function() {
+        assert.equal(this.element.getAttribute("role"), "button");
+    });
+
+    it("should add role if already some roles set", function() {
+        ReflectedARIAAttributes.attachRole(this.element, "checkbox");
+        assert.equal(this.element.getAttribute("role"), "button checkbox");
+    });
+
+    it("should reflect DOM attribute to property", function() {
+        this.element.setAttribute("role", "main checkbox");
+        var i = 0;
+        var roles = ["main", "checkbox"];
+        this.element.roleList.forEach(role => {
+            assert.equal(role, roles[i]);
+            i++;
+        });
+    });
+});
