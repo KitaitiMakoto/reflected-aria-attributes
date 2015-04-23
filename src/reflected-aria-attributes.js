@@ -1,6 +1,80 @@
 "use strict";
 
+class RoleList {
+    constructor(roles, element) {
+        this._list = new Set(roles);
+        this._element = element;
+        this._buildString();
+    }
+
+    toString() {
+        return this._string;
+    }
+
+    add(role) {
+        this._list.add(role);
+        this._buildString();
+    }
+
+    has(role) {
+        return this._list.has(role);
+    }
+
+    delete(role) {
+        this._list.delete(role);
+        this._buildString();
+    }
+
+    forEach(callback, thisArg) {
+        if (thisArg) {
+            this._list.forEach(callback, thisArg);
+        } else {
+            this._list.forEach(callback);
+        }
+    }
+
+    _buildString() {
+        var string = "";
+        for (let role of this._list.values()) {
+            if (string) {
+                string += " ";
+            }
+            string += role;
+        }
+        this._string = string;
+        this._element.setAttribute("role", this._string);
+    }
+}
+
 export default {
+    defineRoleListProperty(element) {
+        var attr = element.getAttribute("role");
+        var cache = {
+            attr: attr,
+            list: new RoleList(attr ? attr.split(/\s+/g) : [], element)
+        };
+        Object.defineProperty(element, "roleList", {
+            enumerable: true,
+            get: function() {
+                var attr = element.getAttribute("role");
+                if (cache.attr === attr) {
+                    return cache.list;
+                }
+                // TODO: Compare performance with one of iterating over set entries
+                cache.list = new RoleList(attr ? attr.split(/\s+/g) : [], this);
+                return cache.list;
+            }
+        });
+    },
+
+    attachRole(element, role) {
+        if (typeof element.roleList === "undefined") {
+            this.defineRoleListProperty(element);
+        }
+        element.roleList.add(role);
+        element.setAttribute("role", element.roleList);
+    },
+
     attachAttributes(element, attributes) {
         for (let attrName of attributes) {
             var desc = this.attributes[attrName];
