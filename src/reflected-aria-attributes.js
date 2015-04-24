@@ -33,6 +33,19 @@ class RoleList {
         }
     }
 
+    item(nth) {
+        if (nth > this._list.size - 1) {
+            return undefined;
+        }
+        var i = 0;
+        for (let role of this._list.values()) {
+            if (i === nth) {
+                return role;
+            }
+            i++;
+        }
+    }
+
     _buildString() {
         var string = "";
         for (let role of this._list.values()) {
