@@ -66,16 +66,18 @@ export default {
             attr: attr,
             list: new RoleList(attr ? attr.split(/\s+/g) : [], element)
         };
-        Object.defineProperty(element, "roleList", {
-            enumerable: true,
-            get: function() {
-                var attr = element.getAttribute("role");
-                if (cache.attr === attr) {
+        Object.defineProperties(element, {
+            "roleList": {
+                enumerable: true,
+                get: function() {
+                    var attr = element.getAttribute("role");
+                    if (cache.attr === attr) {
+                        return cache.list;
+                    }
+                    // TODO: Compare performance with one of iterating over set entries
+                    cache.list = new RoleList(attr ? attr.split(/\s+/g) : [], this);
                     return cache.list;
                 }
-                // TODO: Compare performance with one of iterating over set entries
-                cache.list = new RoleList(attr ? attr.split(/\s+/g) : [], this);
-                return cache.list;
             }
         });
     },
