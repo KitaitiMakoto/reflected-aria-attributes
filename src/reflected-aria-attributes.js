@@ -74,7 +74,7 @@ export default {
                     if (cache.attr === attr) {
                         return cache.list;
                     }
-                    // TODO: Compare performance with one of iterating over set entries
+                    // TODO: Stop to use new object to keep consistency with variable with roleList
                     cache.list = new RoleList(attr ? attr.split(/\s+/g) : [], this);
                     return cache.list;
                 }
