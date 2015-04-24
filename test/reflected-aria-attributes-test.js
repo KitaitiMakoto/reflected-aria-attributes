@@ -117,4 +117,10 @@ describe("ReflectedARIAAttributes.attachRole()", function() {
         this.element.roleList.add("main");
         assert.equal(this.element.role, "button main");
     });
+
+    it("should make role property settable", function() {
+        this.element.role = "main checkbox";
+        assert.equal(this.element.roleList.item(0), "main");
+        assert.equal(this.element.roleList.item(1), "checkbox");
+    });
 });
