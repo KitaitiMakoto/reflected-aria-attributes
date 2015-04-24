@@ -78,6 +78,15 @@ export default {
                     cache.list = new RoleList(attr ? attr.split(/\s+/g) : [], this);
                     return cache.list;
                 }
+            },
+            "role": {
+                enumerable: true,
+                get: function() {
+                    return cache.list.toString();
+                },
+                set: function(value) {
+                    cache.list = new RoleList(value ? value.split(/\s+/g) : [], this);
+                }
             }
         });
     },
