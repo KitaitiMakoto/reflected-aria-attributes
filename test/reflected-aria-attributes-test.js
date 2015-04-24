@@ -112,4 +112,9 @@ describe("ReflectedARIAAttributes.attachRole()", function() {
             i++;
         });
     });
+
+    it("should attach role property", function() {
+        this.element.roleList.add("main");
+        assert.equal(this.element.role, "button main");
+    });
 });
