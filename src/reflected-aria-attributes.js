@@ -16,11 +16,11 @@ class RoleList {
         this._buildString();
     }
 
-    has(role) {
+    contains(role) {
         return this._list.has(role);
     }
 
-    delete(role) {
+    remove(role) {
         this._list.delete(role);
         this._buildString();
     }
