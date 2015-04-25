@@ -100,6 +100,10 @@ var ReflectedARIAAttributes = {
         if (typeof element.roleList === "undefined") {
             this.defineRoleListProperty(element);
         }
+        var desc = this.roles[role];
+        if (! desc) {
+            return;
+        }
         element.roleList.add(role);
         element.setAttribute("role", element.roleList);
     },
