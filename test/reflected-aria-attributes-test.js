@@ -123,4 +123,14 @@ describe("ReflectedARIAAttributes.attachRole()", function() {
         assert.equal(this.element.roleList.item(0), "main");
         assert.equal(this.element.roleList.item(1), "checkbox");
     });
+
+    it("should define attribute methods", function() {
+        assert.strictEqual(this.element.ariaPressed, undefined);
+
+        this.element.setAttribute("aria-pressed", "true");
+        assert.strictEqual(this.element.ariaPressed, true);
+
+        this.element.ariaPressed = false;
+        assert.strictEqual(this.element.getAttribute("aria-pressed"), "false");
+    });
 });
