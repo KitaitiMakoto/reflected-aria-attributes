@@ -108,13 +108,19 @@ var ReflectedARIAAttributes = {
         }
         element.roleList.add(role);
         element.setAttribute("role", element.roleList);
+        var mergedAttrs = [];
+        while (desc) {
+            mergedAttrs = mergedAttrs.concat(desc.attributes);
+            desc = this.roles[desc.superclass];
+        }
+        this.attachAttributes(element, mergedAttrs);
     },
 
     attachAttributes(element, attributes) {
         for (let attrName of attributes) {
             var desc = this.attributes[attrName];
             if (! desc) {
-                throw new Error(`Unknown attribute: {$attrName}`);
+                throw new Error(`Unknown attribute: ${attrName}`);
             }
             Object.defineProperty(element, desc.propName, {
                 get: desc.getter,
