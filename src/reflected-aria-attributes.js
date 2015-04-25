@@ -80,8 +80,7 @@ export default {
                     if (cache.attr === attr) {
                         return cache.list;
                     }
-                    // TODO: Stop to use new object to keep consistency with variable with roleList
-                    cache.list = new RoleList(attr ? attr.trim().split(/\s+/g) : [], this);
+                    cache.list.update(attr ? attr.trim().split(/\s+/g) : []);
                     return cache.list;
                 }
             },
@@ -91,7 +90,7 @@ export default {
                     return cache.list.toString();
                 },
                 set: function(value) {
-                    cache.list = new RoleList(value ? value.trim().split(/\s+/g) : [], this);
+                    cache.list.update(value ? value.trim().split(/\s+/g) : []);
                 }
             }
         });
