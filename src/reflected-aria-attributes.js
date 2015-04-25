@@ -143,7 +143,7 @@ var ReflectedARIAAttributes = {
 
     roles: {
         command: {
-            attributs: [
+            attributes: [
                 "atomic",
                 "busy",
                 "controls",
@@ -185,7 +185,7 @@ var ReflectedARIAAttributes = {
         },
         button: {
             superclass: "command",
-            attribues: ["expanded", "pressed"]// add info that pressed value type is tristate or so on
+            attributes: ["expanded", "pressed"]// add info that pressed value type is tristate or so on
         },
         checkbox: {
             superclass: "input",
