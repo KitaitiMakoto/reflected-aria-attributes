@@ -135,6 +135,59 @@ var ReflectedARIAAttributes = {
         this.defineAll(HTMLElement.prototype);
     },
 
+    roles: {
+        command: {
+            attributs: [
+                "atomic",
+                "busy",
+                "controls",
+                "describedby",
+                "disabled",
+                "dropeffect",
+                "flowto",
+                "grabbed",
+                "haspopup",
+                "hidden",
+                "invalid",
+                "label",
+                "labelledby",
+                "live",
+                "owns",
+                "relevant"
+            ]
+        },
+        input: {
+            superclass: "widget",
+            attributes: [
+                "atomic",
+                "busy",
+                "controls",
+                "describedby",
+                "disabled",
+                "dropeffect",
+                "flowto",
+                "grabbed",
+                "haspopup",
+                "hidden",
+                "invalid",
+                "label",
+                "labelledby",
+                "live",
+                "owns",
+                "relevant"
+            ]
+        },
+        button: {
+            superclass: "command",
+            attribues: ["expanded", "pressed"]// add info that pressed value type is tristate or so on
+        },
+        checkbox: {
+            superclass: "input",
+            subclasses: ["menuitemcheckbox", "radio"],
+            attributes: ["checked"]
+        }
+    },
+
     attributes: {
         "aria-pressed": {
             propName: "ariaPressed",
