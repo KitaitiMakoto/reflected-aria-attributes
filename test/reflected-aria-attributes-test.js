@@ -17,12 +17,14 @@ var shared = {
         });
 
         it("should attach reflected WAI-ARIA attributes to an element", function() {
-            assert(this.element.ariaPressed !== undefined);
+            var propName = attr.replace(/-(\w)/g, (match, c) => c.toUpperCase());
+            assert(this.element[propName] !== undefined);
             assert(this.element.hasAttribute(attr));
         });
 
         it("should set default value", function() {
-            assert(this.element.ariaPressed === false);
+            var propName = attr.replace(/-(\w)/g, (match, c) => c.toUpperCase());
+            assert(this.element[propName] === false);
             assert(this.element.getAttribute(attr) === "false");
         });
 
