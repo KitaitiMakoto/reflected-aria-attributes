@@ -52,7 +52,7 @@ describe("ReflectedARIAAttributes.attachAttributes()", function() {
     });
 
     for (let attr in ReflectedARIAAttributes.attributes) {
-        var prop = ReflectedARIAAttributes.attributes[attr].propName;
+        var prop = attr.replace(/-(\w)/g, (str, c) => c.toUpperCase());
         shared.shouldBehaveLikeReflectedAttribute(attr, prop);
     }
 
