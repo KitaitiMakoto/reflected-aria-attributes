@@ -129,15 +129,6 @@ var ReflectedARIAAttributes = {
                 get: desc.getter,
                 set: desc.setter
             });
-            var isPrototype;
-            try {
-                isPrototype = !element.attributes;
-            } catch(error) {
-                isPrototype = true;
-            }
-            if (! isPrototype) {
-                element.setAttribute(attrName, desc.default);
-            }
         }
     },
 
