@@ -100,6 +100,7 @@ var ReflectedARIAAttributes = {
         });
     },
 
+    // TODO: Consider the case which element is a prototype
     attachRole(element, role) {
         if (typeof element.roleList === "undefined") {
             this.defineRoleListProperty(element);
