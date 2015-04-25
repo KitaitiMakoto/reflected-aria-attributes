@@ -65,7 +65,7 @@ class RoleList {
     }
 }
 
-export default {
+var ReflectedARIAAttributes = {
     defineRoleListProperty(element) {
         var attr = element.getAttribute("role");
         var cache = {
@@ -158,3 +158,5 @@ export default {
         }
     }
 }
+
+export default ReflectedARIAAttributes;
