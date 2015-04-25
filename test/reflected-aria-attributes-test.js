@@ -28,7 +28,7 @@ var shared = {
             }
             this.element[propName] = sampleValue;
             assert.strictEqual(this.element.hasAttribute(attr), true);
-            assert.strictEqual(this.element.getAttribute(attr), sampleValue);
+            assert.strictEqual(this.element.getAttribute(attr), sampleValue.toString());
         });
 
         it("property change should be reflected to attribute", function() {
