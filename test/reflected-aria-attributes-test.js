@@ -18,14 +18,17 @@ var shared = {
 
         it("should attach reflected WAI-ARIA attributes to an element", function() {
             var propName = attr.replace(/-(\w)/g, (match, c) => c.toUpperCase());
-            assert(this.element[propName] !== undefined);
-            assert(this.element.hasAttribute(attr));
-        });
+            assert.strictEqual(this.element.hasAttribute(attr), false);
 
-        it("should set default value", function() {
-            var propName = attr.replace(/-(\w)/g, (match, c) => c.toUpperCase());
-            assert(this.element[propName] === false);
-            assert(this.element.getAttribute(attr) === "false");
+            if (attr === "aria-pressed") {
+                var sampleValue = "false";
+            } else {
+                var valueType = ReflectedARIAAttributes.attributes[attr].value;
+                var sampleValue = ReflectedARIAAttributes.attributeValueTypes[valueType].default;
+            }
+            this.element[propName] = sampleValue;
+            assert.strictEqual(this.element.hasAttribute(attr), true);
+            assert.strictEqual(this.element.getAttribute(attr), sampleValue);
         });
 
         it("property change should be reflected to attribute", function() {
@@ -56,6 +59,8 @@ describe("ReflectedARIAAttributes.attachAttributes()", function() {
     it("should attach multiple attributes at once", function() {
         var attrs = Object.keys(ReflectedARIAAttributes.attributes);
         ReflectedARIAAttributes.attachAttributes(this.element, attrs);
+        this.element.ariaPressed = true;
+        this.element.ariaDisabled = true;
 
         assert(this.element.hasAttribute("aria-pressed"));
         assert(this.element.hasAttribute("aria-disabled"));
@@ -74,19 +79,10 @@ describe("ReflectedARIAAttributes.defineAll()", function() {
 
         var attrs = Object.keys(ReflectedARIAAttributes.attributes);
         attrs.forEach((attr) => {
+            var propName = attr.replace(/-(\w)/g, (match, c) => c.toUpperCase());
+            this.element[propName] = true;
             assert(this.element.hasAttribute(attr));
         });
-    });
-});
-
-describe("ReflectedARIAAttributes.init()", function() {
-    it("should be define all available properties to all elements", function() {
-        ReflectedARIAAttributes.init();
-
-        var a = document.createElement("a");
-        a.ariaPressed = true;
-        assert(a.hasAttribute("aria-pressed"));
-        assert(a.ariaDisabled === false);
     });
 });
 
