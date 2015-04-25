@@ -132,11 +132,6 @@ var ReflectedARIAAttributes = {
         }
     },
 
-    defineAll(element) {
-        var attrs = Object.keys(this.attributes);
-        this.attachAttributes(element, attrs);
-    },
-
     roles: {
         command: {
             attributes: [

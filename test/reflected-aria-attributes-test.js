@@ -67,25 +67,6 @@ describe("ReflectedARIAAttributes.attachAttributes()", function() {
     });
 });
 
-describe("ReflectedARIAAttributes.defineAll()", function() {
-    beforeEach(function(done) {
-        this.element = document.createElement("span");
-
-        done();
-    });
-
-    it("should define all available properties", function() {
-        ReflectedARIAAttributes.defineAll(this.element);
-
-        var attrs = Object.keys(ReflectedARIAAttributes.attributes);
-        attrs.forEach((attr) => {
-            var propName = attr.replace(/-(\w)/g, (match, c) => c.toUpperCase());
-            this.element[propName] = true;
-            assert(this.element.hasAttribute(attr));
-        });
-    });
-});
-
 describe("ReflectedARIAAttributes.attachRole()", function() {
     beforeEach(function() {
         this.element = document.createElement("div");
