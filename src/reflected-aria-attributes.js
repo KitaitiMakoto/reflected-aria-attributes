@@ -137,10 +137,6 @@ var ReflectedARIAAttributes = {
         this.attachAttributes(element, attrs);
     },
 
-    init() {
-        this.defineAll(HTMLElement.prototype);
-    },
-
     roles: {
         command: {
             attributes: [
