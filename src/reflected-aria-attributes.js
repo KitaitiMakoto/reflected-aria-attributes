@@ -25,6 +25,12 @@ class RoleList {
         this._buildString();
     }
 
+    update(roles) {
+        // TODO: Compare with difference performance between creating new and iterating over current items and roles
+        this._list = new Set(roles);
+        this._buildString();
+    }
+
     forEach(callback, thisArg) {
         if (thisArg) {
             this._list.forEach(callback, thisArg);
