@@ -66,8 +66,6 @@ class RoleList {
 }
 
 var ReflectedARIAAttributes = {
-    ATTRIBUTE_PREFIX: "aria-",
-
     defineRoleListProperty(element) {
         var attr = element.getAttribute("role");
         var cache = {
