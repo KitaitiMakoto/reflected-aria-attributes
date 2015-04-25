@@ -64,7 +64,7 @@ export default {
         var attr = element.getAttribute("role");
         var cache = {
             attr: attr,
-            list: new RoleList(attr ? attr.split(/\s+/g) : [], element)
+            list: new RoleList(attr ? attr.trim().split(/\s+/g) : [], element)
         };
         Object.defineProperties(element, {
             "roleList": {
@@ -75,7 +75,7 @@ export default {
                         return cache.list;
                     }
                     // TODO: Stop to use new object to keep consistency with variable with roleList
-                    cache.list = new RoleList(attr ? attr.split(/\s+/g) : [], this);
+                    cache.list = new RoleList(attr ? attr.trim().split(/\s+/g) : [], this);
                     return cache.list;
                 }
             },
@@ -85,7 +85,7 @@ export default {
                     return cache.list.toString();
                 },
                 set: function(value) {
-                    cache.list = new RoleList(value ? value.split(/\s+/g) : [], this);
+                    cache.list = new RoleList(value ? value.trim().split(/\s+/g) : [], this);
                 }
             }
         });
