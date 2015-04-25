@@ -1,8 +1,8 @@
 "use strict";
 
 class RoleList {
-    constructor(roles, element) {
-        this._list = new Set(roles);
+    constructor(roleAttributeValue, element) {
+        this._list = new Set(RoleList._splitRoles(roleAttributeValue));
         this._element = element;
         this._buildString();
     }
@@ -25,9 +25,9 @@ class RoleList {
         this._buildString();
     }
 
-    update(roles) {
+    update(roleAttributeValue) {
         // TODO: Compare with difference performance between creating new and iterating over current items and roles
-        this._list = new Set(roles);
+        this._list = new Set(RoleList._splitRoles(roleAttributeValue));
         this._buildString();
     }
 
@@ -63,6 +63,10 @@ class RoleList {
         this._string = string;
         this._element.setAttribute("role", this._string);
     }
+
+    static _splitRoles(roleString) {
+        return roleString ? roleString.trim().split(/\s+/g) : [];
+    }
 }
 
 var ReflectedARIAAttributes = {
@@ -70,7 +74,7 @@ var ReflectedARIAAttributes = {
         var attr = element.getAttribute("role");
         var cache = {
             attr: attr,
-            list: new RoleList(attr ? attr.trim().split(/\s+/g) : [], element)
+            list: new RoleList(attr, element)
         };
         Object.defineProperties(element, {
             "roleList": {
@@ -80,7 +84,7 @@ var ReflectedARIAAttributes = {
                     if (cache.attr === attr) {
                         return cache.list;
                     }
-                    cache.list.update(attr ? attr.trim().split(/\s+/g) : []);
+                    cache.list.update(attr);
                     return cache.list;
                 }
             },
@@ -90,7 +94,7 @@ var ReflectedARIAAttributes = {
                     return cache.list.toString();
                 },
                 set: function(value) {
-                    cache.list.update(value ? value.trim().split(/\s+/g) : []);
+                    cache.list.update(value);
                 }
             }
         });
