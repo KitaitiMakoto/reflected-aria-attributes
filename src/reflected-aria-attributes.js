@@ -174,6 +174,27 @@ var ReflectedARIAAttributes = {
                 "aria-relevant"
             ]
         },
+        widget: {
+            superclass: "roletype",
+            attributes: [
+                "aria-atomic",
+                "aria-busy",
+                "aria-controls",
+                "aria-describedby",
+                "aria-disabled",
+                "aria-dropeffect",
+                "aria-flowto",
+                "aria-grabbed",
+                "aria-haspopup",
+                "aria-hidden",
+                "aria-invalid",
+                "aria-label",
+                "aria-labelledby",
+                "aria-live",
+                "aria-owns",
+                "aria-relevant"
+            ]
+        },
         button: {
             superclass: "command",
             attributes: ["aria-expanded", "aria-pressed"]// add info that pressed value type is tristate or so on
