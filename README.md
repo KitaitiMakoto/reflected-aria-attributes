@@ -74,4 +74,4 @@ See also
 License
 -------
 
-GPLv3 or later. See LICENSE file for details.
+LGPLv3 or later. See LICENSE file for details.

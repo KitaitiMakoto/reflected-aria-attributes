@@ -1,7 +1,7 @@
 {
   "name": "reflected-aria-attributes",
   "description": "Utilities to attach reflected WAI-ARIA attributes to DOM elements.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "KITAITI Makoto",
   "homepage": "https://github.com/KitaitiMakoto/reflected-aria-attributes",
   "repository": {
@@ -13,7 +13,7 @@
     "DOM",
     "HTML"
   ],
-  "license": "GPLv3",
+  "license": "LGPLv3",
   "files": [
     "lib",
     "old-lib"
