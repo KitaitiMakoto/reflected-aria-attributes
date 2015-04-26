@@ -212,24 +212,267 @@ var ReflectedARIAAttributes = {
     },
 
     attributes: {
-        "aria-pressed": {
-            propName: "ariaPressed",
-            default: "false",
-            getter: function() {
-                return this.getAttribute("aria-pressed") === "true";
-            },
-            setter: function(value) {
-                this.setAttribute("aria-pressed", !!value);
-            }
+        "aria-atomic": {
+            value: "true/false"
+        },
+        "aria-busy": {
+            value: "true/false"
+        },
+        "aria-controls": {
+            value: "ID reference list"
+        },
+        "aria-describedby": {
+            value: "ID reference list"
         },
         "aria-disabled": {
-            propName: "ariaDisabled",
-            default: "false",
-            getter: function() {
-                return this.getAttribute("aria-disabled") === "true";
+            value: "true/false"
+        },
+        "aria-dropeffect": {
+            value: "token list"
+        },
+        "aria-flowto": {
+            value: "ID reference list"
+        },
+        "aria-grabbed": {
+            value: "true/false/undefined"
+        },
+        "aria-haspopup": {
+            value: "true/false"
+        },
+        "aria-hidden": {
+            value: "true/false"
+        },
+        "aria-invalid": {
+            value: "token"
+        },
+        "aria-label": {
+            value: "string"
+        },
+        "aria-labelledby": {
+            value: "ID reference list"
+        },
+        "aria-live": {
+            value: "token",
+            set: ["off", "polite", "assertive"],
+            default: "off"
+        },
+        "aria-owns": {
+            value: "ID reference list"
+        },
+        "aria-relevant": {
+            value: "token list",
+            set: ["additions", "removals", "text", "all", "additions text"],
+            default: "additions text"
+        },
+
+        "aria-autocomplete": {
+            value: "token",
+            set: ["inline", "list", "both", "none"],
+            defaut: "none"
+        },
+        "aria-checked": {
+            value: "tristate",
+            default: undefined
+        },
+        "aria-expanded": {
+            value: "true/false/undefined"
+        },
+        "aria-level": {
+            value: "integer"
+        },
+        "aria-multiline": {
+            value: "true/false"
+        },
+        "aria-multiselectable": {
+            value: "true/false"
+        },
+        "aria-orientation": {
+            value: "token",
+            set: ["vertical", "horizontal"],
+            default: "horizontal"
+        },
+        "aria-pressed": {
+            value: "tristate",
+            default: undefined
+        },
+        "aria-readonly": {
+            value: "true/false"
+        },
+        "aria-required": {
+            value: "true/false"
+        },
+        "aria-selected": {
+            value: "true/false/undefined"
+        },
+        "aria-sort": {
+            value: "token",
+            set: ["ascending", "descending", "none", "other"],
+            default: "none"
+        },
+        "aria-valuemax": {
+            value: "number"
+        },
+        "aria-valuemin": {
+            value: "number"
+        },
+        "aria-valuenow": {
+            value: "number"
+        },
+        "aria-valuetext": {
+            value: "string"
+        },
+
+        "aria-activedescendant": {
+            value: "ID reference"
+        },
+        "aria-posinset": {
+            value: "integer"
+        },
+        "aria-setsize": {
+            value: "integer"
+        }
+    },
+
+    attributeValueTypes: {
+        "true/false": {
+            createGetter: (attrName, defaultValue) => {
+                defaultValue = defaultValue || ReflectedARIAAttributes.attributeValueTypes["true/false"].default;
+                return function trueFalseGetter() {
+                    if (this.hasAttribute(attrName)) {
+                        return this.getAttribute(attrName) === "true";
+                    }
+                    return defaultValue;
+                };
             },
-            setter: function(value) {
-                this.setAttribute("aria-disabled", !!value);
+            createSetter: (attrName) => {
+                return function trueFalseSetter(value) {
+                    this.setAttribute(attrName, value);
+                };
+            },
+            default: false
+        },
+        "tristate": {
+            createGetter: (attrName, defaultValue) => {
+                if (arguments.length === 1) {
+                    // defaultValue might be specified as undefined explicity.
+                    // To distinguish explicitly specified undefined from non-specified defaultValue variable,
+                    // need to check arguments.length
+                    defaultValue = ReflectedARIAAttributes.attributeValueTypes["tristate"].default;
+                }
+                return function tristateGetter() {
+                    if (this.hasAttribute(attrName)) {
+                        return this.getAttribute(attrName) === "true";
+                    }
+                    return defaultValue;
+                };
+            },
+            createSetter: (attrName, defaultValue) => {
+                return function setTristate(value) {
+                    if (value === undefined) {
+                        this.removeAttribute(attrName);
+                    } else if (value === "mixed") {
+                        this.setAttribute(attrName, "mixed");
+                    } else {
+                        this.setAttribute(attrName, value);
+                    }
+                };
+            },
+            default: false
+        },
+        "true/false/undefined": {
+            createGetter: (attrName, defaultValue) => {
+                return function() {
+                    
+                };
+            },
+            createSetter: (attrName) => {
+                return function(value) {
+                    
+                };
+            }
+        },
+        "ID reference": {
+            createGetter: (attrName, defaultValue) => {
+                return function() {
+                    
+                };
+            },
+            createSetter: (attrName) => {
+                return function(value) {
+                    
+                };
+            }
+        },
+        "ID reference list": {
+            createGetter: (attrName, defaultValue) => {
+                return function() {
+                    
+                };
+            },
+            createSetter: (attrName) => {
+                return function(value) {
+                    
+                };
+            }
+        },
+        "integer": {
+            createGetter: (attrName, defaultValue) => {
+                return function() {
+                    
+                };
+            },
+            createSetter: (attrName) => {
+                return function(value) {
+                    
+                };
+            }
+        },
+        "number": {
+            createGetter: (attrName, defaultValue) => {
+                return function() {
+                    
+                };
+            },
+            createSetter: (attrName) => {
+                return function(value) {
+                    
+                };
+            }
+        },
+        "string": {
+            createGetter: (attrName, defaultValue) => {
+                return function() {
+                    
+                };
+            },
+            createSetter: (attrName) => {
+                return function(value) {
+                    
+                };
+            }
+        },
+        "token": {
+            createGetter: (attrName, defaultValue) => {
+                return function() {
+                    
+                };
+            },
+            createSetter: (attrName) => {
+                return function(value) {
+                    
+                };
+            }
+        },
+        "token list": {
+            createGetter: (attrName, defaultValue) => {
+                return function() {
+                    
+                };
+            },
+            createSetter: (attrName) => {
+                return function(value) {
+                    
+                };
             }
         }
     }
