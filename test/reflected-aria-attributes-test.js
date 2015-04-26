@@ -51,7 +51,7 @@ describe("ReflectedARIAAttributes.attachAttributes()", function() {
         done();
     });
 
-    for (let attr in ReflectedARIAAttributes.attributes) {
+    for (let attr of ["aria-pressed", "aria-disabled"]) {// should use ReflectedARIAAttributes.attributes
         var prop = attr.replace(/-(\w)/g, (str, c) => c.toUpperCase());
         shared.shouldBehaveLikeReflectedAttribute(attr, prop);
     }
