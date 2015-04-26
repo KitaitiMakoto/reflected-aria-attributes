@@ -37,6 +37,19 @@ a.hasAttribute("aria-disabled"); // => true
 a.getAttribute("aria-disabled"); // => "true"
 ```
 
+Using in ECMAScript 5:
+
+```javascript
+aria = require("reflected-aria-attributes/old-lib/reflected-aria-attributes");
+
+a = document.createElement("a");
+aria.attachRole(a, "button");
+
+a.ariaDisabled = true;
+a.hasAttribute("aria-disabled"); // => true
+a.getAttribute("aria-disabled"); // => "true"
+```
+
 State
 -----
 
