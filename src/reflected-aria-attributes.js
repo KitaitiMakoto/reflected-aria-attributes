@@ -197,12 +197,17 @@ var ReflectedARIAAttributes = {
         },
         button: {
             superclass: "command",
-            attributes: ["aria-expanded", "aria-pressed"]// add info that pressed value type is tristate or so on
+            attributes: [
+                "aria-expanded",
+                "aria-pressed"
+            ]// add info that pressed value type is tristate or so on
         },
         checkbox: {
             superclass: "input",
             subclasses: ["menuitemcheckbox", "radio"],
-            attributes: ["aria-checked"]
+            attributes: [
+                "aria-checked"
+            ]
         }
     },
 
