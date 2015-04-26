@@ -2,7 +2,7 @@
 
 import jsdom from "jsdom";
 import assert from "power-assert";
-import ReflectedARIAAttributes from "../lib/reflected-aria-attributes";
+import ReflectedARIAAttributes from "../old-lib/reflected-aria-attributes";
 
 var window = jsdom.jsdom().defaultView;
 var document = window.document;
