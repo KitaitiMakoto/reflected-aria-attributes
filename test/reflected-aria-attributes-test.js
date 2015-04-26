@@ -65,6 +65,8 @@ describe("ReflectedARIAAttributes.attachAttributes()", function() {
         assert(this.element.hasAttribute("aria-pressed"));
         assert(this.element.hasAttribute("aria-disabled"));
     });
+
+    it("should be able to apply to prototypes");
 });
 
 describe("ReflectedARIAAttributes.attachRole()", function() {
