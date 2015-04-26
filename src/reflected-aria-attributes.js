@@ -125,9 +125,20 @@ var ReflectedARIAAttributes = {
             if (! desc) {
                 throw new Error(`Unknown attribute: ${attrName}`);
             }
-            Object.defineProperty(element, desc.propName, {
-                get: desc.getter,
-                set: desc.setter
+            var propName = attrName.replace(/-(\w)/g, (str, c) => c.toUpperCase());
+            if (element.hasOwnProperty(propName)) {
+                continue;
+            }
+            var propDesc = this.attributeValueTypes[desc.value];
+            if (propDesc.hasOwnProperty("default")) {
+                var getter = propDesc.createGetter(attrName);
+            } else {
+                var getter = propDesc.createSetter(attrName, propDesc.default);
+            }
+            var setter = propDesc.createSetter(attrName);
+            Object.defineProperty(element, propName, {
+                get: getter,
+                set: setter
             });
         }
     },
