@@ -25,6 +25,18 @@ a.ariaDisabled = true;
 a.hasAttribute("aria-disabled"); // => false
 ```
 
+Attaching role to elements:
+
+```javascript
+import aria from "reflected-aria-attributes";
+
+var a = document.createElement("a");
+aria.attachRole(a, "button");
+a.ariaDisabled = true;
+a.hasAttribute("aria-disabled"); // => true
+a.getAttribute("aria-disabled"); // => "true"
+```
+
 State
 -----
 
