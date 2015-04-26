@@ -16,7 +16,7 @@ import aria from "reflected-aria-attributes";
 
 var a = document.createElement("a");
 aria.define(a, "aria-pressed");
-a.ariaPressed; // => false
+a.ariaPressed; // => undefined
 a.ariaPressed = true;
 a.getAttribute("aria-pressed"); // => "true"
 
