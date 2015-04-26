@@ -55,10 +55,14 @@ State
 
 Still work in progress and too unstable.
 
-Currently supported attributes:
+Currently supported attribute types:
 
-* `aria-pressed`
-* `aria-disabled`
+* true/false
+* tristate
+
+Currently supported roles:
+
+* button(partially)
 
 See also
 --------
