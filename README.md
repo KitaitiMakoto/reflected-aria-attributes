@@ -15,7 +15,7 @@ Defining ARIA attribute:
 import aria from "reflected-aria-attributes";
 
 var a = document.createElement("a");
-aria.define(a, "aria-pressed");
+aria.attachAttributes(a, ["aria-pressed"]);
 a.ariaPressed; // => undefined
 a.ariaPressed = true;
 a.getAttribute("aria-pressed"); // => "true"
@@ -40,9 +40,9 @@ a.getAttribute("aria-disabled"); // => "true"
 Using in ECMAScript 5:
 
 ```javascript
-aria = require("reflected-aria-attributes/old-lib/reflected-aria-attributes");
+var aria = require("reflected-aria-attributes/old-lib/reflected-aria-attributes");
 
-a = document.createElement("a");
+var a = document.createElement("a");
 aria.attachRole(a, "button");
 
 a.ariaDisabled = true;
