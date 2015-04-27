@@ -50,8 +50,8 @@ a.hasAttribute("aria-disabled"); // => true
 a.getAttribute("aria-disabled"); // => "true"
 ```
 
-State
------
+Status
+------
 
 Still work in progress and too unstable.
 
