@@ -52,12 +52,12 @@ describe("ReflectedARIAAttributes.attachAttributes()", function() {
     });
 
     for (let attr of ["aria-pressed", "aria-disabled"]) {// should use ReflectedARIAAttributes.attributes
-        var prop = attr.replace(/-(\w)/g, (str, c) => c.toUpperCase());
+        let prop = attr.replace(/-(\w)/g, (str, c) => c.toUpperCase());
         shared.shouldBehaveLikeReflectedAttribute(attr, prop);
     }
 
     it("should attach multiple attributes at once", function() {
-        var attrs = Object.keys(ReflectedARIAAttributes.attributes);
+        let attrs = Object.keys(ReflectedARIAAttributes.attributes);
         ReflectedARIAAttributes.attachAttributes(this.element, attrs);
         this.element.ariaPressed = true;
         this.element.ariaDisabled = true;
