@@ -16,11 +16,11 @@
   "license": "LGPLv3",
   "files": [
     "lib",
-    "old-lib"
+    "es5"
   ],
   "main": "lib/reflected-aria-attributes.js",
   "scripts": {
-    "build": "babel lib --out-dir old-lib --source-maps-inline",
+    "build": "babel lib --out-dir es5 --source-maps-inline",
     "test": "npm run build && mocha test/*.js"
   },
   "devDependencies": {

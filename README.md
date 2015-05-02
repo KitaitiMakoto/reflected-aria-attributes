@@ -46,7 +46,7 @@ a.getAttribute("aria-disabled"); // => "true"
 Using in ECMAScript 5:
 
 ```javascript
-var aria = require("reflected-aria-attributes/old-lib/reflected-aria-attributes");
+var aria = require("reflected-aria-attributes/es5/reflected-aria-attributes");
 
 var a = document.createElement("a");
 aria.attachRole(a, "button");
