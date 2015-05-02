@@ -65,6 +65,9 @@ Currently supported attribute types:
 
 * true/false
 * tristate
+* true/false/undefined
+* ID reference list
+* token list
 
 Currently supported roles:
 
