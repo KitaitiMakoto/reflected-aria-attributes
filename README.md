@@ -1,6 +1,12 @@
 Reflected ARIA Attributes
 =========================
 
+Utilities to attach reflected WAI-ARIA attributes to DOM elements.
+
+Here, "attributes" means WAI-ARIA's states and properties. In WAI-ARIA specification, it says:
+
+> this specification refers to both "states" and "properties" simply as "attributes" whenever possible. 
+
 Installation
 ------------
 
