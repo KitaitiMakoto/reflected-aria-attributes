@@ -67,6 +67,34 @@ describe("ReflectedARIAAttributes.attachAttributes()", function() {
     });
 
     it("should be able to apply to prototypes");
+
+    context("ID reference list attributes", function() {
+	beforeEach(function(done) {
+	    ReflectedARIAAttributes.attachListAttribute(this.element, "aria-controls");
+
+	    done();
+	});
+
+	it("should have token list", function() {
+	    this.element.ariaControlsList.add("controller1");
+	    this.element.ariaControlsList.add("controller2");
+
+	    assert.equal(this.element.getAttribute("aria-controls"), "controller1 controller2");
+	});
+
+	it("should able to access via property name", function() {
+	    this.element.ariaControlsList.add("controller1");
+	    this.element.ariaControlsList.add("controller2");
+
+	    assert.equal(this.element.ariaControls, "controller1 controller2");
+	});
+
+	it("should reflect attribute to property", function() {
+	    this.element.setAttribute("aria-controls", "controller1 controller2");
+
+	    assert.equal(this.element.ariaControls, "controller1 controller2");
+	});
+    });
 });
 
 describe("ReflectedARIAAttributes.attachRole()", function() {
