@@ -66,7 +66,13 @@ describe("ReflectedARIAAttributes.attachAttributes()", function() {
         assert(this.element.hasAttribute("aria-disabled"));
     });
 
-    it("should be able to apply to prototypes");
+    it("should be able to apply to prototypes", function() {
+        var a = document.createElement("a");
+        ReflectedARIAAttributes.attachAttributes(window.HTMLAnchorElement.prototype, ["aria-pressed"]);
+        a.ariaPressed = true;
+
+        assert.strictEqual(a.getAttribute("aria-pressed"), "true");
+    });
 
     context("ID reference list attributes", function() {
     beforeEach(function(done) {
