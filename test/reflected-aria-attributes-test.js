@@ -69,31 +69,31 @@ describe("ReflectedARIAAttributes.attachAttributes()", function() {
     it("should be able to apply to prototypes");
 
     context("ID reference list attributes", function() {
-	beforeEach(function(done) {
-	    ReflectedARIAAttributes.attachListAttribute(this.element, "aria-controls");
+    beforeEach(function(done) {
+        ReflectedARIAAttributes.attachListAttribute(this.element, "aria-controls");
 
-	    done();
-	});
+        done();
+    });
 
-	it("should have token list", function() {
-	    this.element.ariaControlsList.add("controller1");
-	    this.element.ariaControlsList.add("controller2");
+    it("should have token list", function() {
+        this.element.ariaControlsList.add("controller1");
+        this.element.ariaControlsList.add("controller2");
 
-	    assert.equal(this.element.getAttribute("aria-controls"), "controller1 controller2");
-	});
+        assert.equal(this.element.getAttribute("aria-controls"), "controller1 controller2");
+    });
 
-	it("should able to access via property name", function() {
-	    this.element.ariaControlsList.add("controller1");
-	    this.element.ariaControlsList.add("controller2");
+    it("should able to access via property name", function() {
+        this.element.ariaControlsList.add("controller1");
+        this.element.ariaControlsList.add("controller2");
 
-	    assert.equal(this.element.ariaControls, "controller1 controller2");
-	});
+        assert.equal(this.element.ariaControls, "controller1 controller2");
+    });
 
-	it("should reflect attribute to property", function() {
-	    this.element.setAttribute("aria-controls", "controller1 controller2");
+    it("should reflect attribute to property", function() {
+        this.element.setAttribute("aria-controls", "controller1 controller2");
 
-	    assert.equal(this.element.ariaControls, "controller1 controller2");
-	});
+        assert.equal(this.element.ariaControls, "controller1 controller2");
+    });
     });
 });
 
@@ -142,13 +142,20 @@ describe("ReflectedARIAAttributes.attachRole()", function() {
         this.element.ariaPressed = false;
         assert.strictEqual(this.element.getAttribute("aria-pressed"), "false");
 
-	this.element.ariaControls = "control1 control2";
-	assert.strictEqual(this.element.getAttribute("aria-controls"), "control1 control2");
-	assert(this.element.ariaControlsList.contains("control1"));
+        this.element.ariaControls = "control1 control2";
+        assert.strictEqual(this.element.getAttribute("aria-controls"), "control1 control2");
+        assert(this.element.ariaControlsList.contains("control1"));
 
-	assert.strictEqual(this.element.ariaDropeffect, "none")
-	this.element.setAttribute("aria-dropeffect", "copy move");
-	assert.strictEqual(this.element.ariaDropeffect, "copy move");
-	assert(this.element.ariaDropeffectList.contains("move"));
+        assert.strictEqual(this.element.ariaDropeffect, "none")
+        this.element.setAttribute("aria-dropeffect", "copy move");
+        assert.strictEqual(this.element.ariaDropeffect, "copy move");
+        assert(this.element.ariaDropeffectList.contains("move"));
+
+        this.element.ariaDropeffectList.add("movie");
+        assert(! this.element.getAttribute("aria-dropeffect").includes("movie"));
+
+        this.element.setAttribute("aria-dropeffect", "movie");
+        assert.strictEqual(this.element.ariaDropeffect, "");
+        assert.strictEqual(this.element.getAttribute("aria-dropeffect"), "");
     });
 });
