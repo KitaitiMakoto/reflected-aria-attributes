@@ -145,5 +145,10 @@ describe("ReflectedARIAAttributes.attachRole()", function() {
 	this.element.ariaControls = "control1 control2";
 	assert.strictEqual(this.element.getAttribute("aria-controls"), "control1 control2");
 	assert(this.element.ariaControlsList.contains("control1"));
+
+	assert.strictEqual(this.element.ariaDropeffect, "none")
+	this.element.setAttribute("aria-dropeffect", "copy move");
+	assert.strictEqual(this.element.ariaDropeffect, "copy move");
+	assert(this.element.ariaDropeffectList.contains("move"));
     });
 });
