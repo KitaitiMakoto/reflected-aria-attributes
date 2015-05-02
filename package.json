@@ -20,7 +20,7 @@
   ],
   "main": "lib/reflected-aria-attributes.js",
   "scripts": {
-    "build": "babel lib --out-dir es5 --source-maps-inline",
+    "build": "babel lib --out-dir es5 --source-maps",
     "test": "npm run build && mocha test/*.js"
   },
   "devDependencies": {
