@@ -141,5 +141,9 @@ describe("ReflectedARIAAttributes.attachRole()", function() {
 
         this.element.ariaPressed = false;
         assert.strictEqual(this.element.getAttribute("aria-pressed"), "false");
+
+	this.element.ariaControls = "control1 control2";
+	assert.strictEqual(this.element.getAttribute("aria-controls"), "control1 control2");
+	assert(this.element.ariaControlsList.contains("control1"));
     });
 });
