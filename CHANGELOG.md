@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.1.4
+-----
+
+* [BUG FIX]Fix bug that superclass's attributes are not attached
+
 0.1.3
 -----
 
